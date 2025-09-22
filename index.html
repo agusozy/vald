@@ -1,0 +1,245 @@
+import React, { useState } from "react";
+
+// Single-file React + Tailwind component that reproduces the layout in the provided images.
+// Usage: drop into a React app that has Tailwind configured (create-react-app + Tailwind or Vite + Tailwind).
+// Exports default App component.
+
+export default function App() {
+  const [route, setRoute] = useState("home");
+
+  return (
+    <div className="min-h-screen bg-gray-50 text-slate-800 font-sans">
+      {/* NAVBAR */}
+      <header className="bg-white border-b">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-300 to-emerald-300 flex items-center justify-center shadow-sm">
+              <span className="text-sm font-bold">WS</span>
+            </div>
+            <div>
+              <div className="text-lg font-semibold">Vlad Meme Token</div>
+              <div className="text-xs text-slate-400">Fair Launch • 100% Community</div>
+            </div>
+          </div>
+
+          <nav className="flex items-center gap-4">
+            <button onClick={() => setRoute("home")} className={`px-3 py-2 rounded-md ${route === 'home' ? 'bg-slate-100' : ''}`}>Home</button>
+            <button onClick={() => setRoute("buy")} className={`px-3 py-2 rounded-md ${route === 'buy' ? 'bg-slate-100' : ''}`}>Buy WST</button>
+            <button onClick={() => setRoute("tokenomics")} className={`px-3 py-2 rounded-md ${route === 'tokenomics' ? 'bg-slate-100' : ''}`}>Tokenomics</button>
+            <button onClick={() => setRoute("roadmap")} className={`px-3 py-2 rounded-md ${route === 'roadmap' ? 'bg-slate-100' : ''}`}>Roadmap</button>
+            <button className="ml-4 px-3 py-2 rounded-md bg-emerald-500 text-white">Buy WST</button>
+          </nav>
+        </div>
+      </header>
+
+      <main className="max-w-6xl mx-auto px-6 py-12">
+        {route === "home" && <Home />}
+        {route === "buy" && <Buy />}
+        {route === "tokenomics" && <Tokenomics />}
+        {route === "roadmap" && <Roadmap />}
+      </main>
+
+      <footer className="bg-white border-t mt-12">
+        <div className="max-w-6xl mx-auto px-6 py-8 text-sm text-slate-500">© {new Date().getFullYear()} Wavy Smile Token • Built by community</div>
+      </footer>
+    </div>
+  );
+}
+
+function Home() {
+  return (
+    <>
+      <section className="bg-gradient-to-b from-white to-slate-50 rounded-xl p-10 shadow-inner">
+        <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="flex-1 text-center md:text-left">
+            <div className="w-28 h-28 mx-auto md:mx-0 rounded-full bg-white shadow flex items-center justify-center">
+              {/* placeholder avatar */}
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="22" height="22" rx="3" stroke="#CBD5E1" strokeWidth="1.2" />
+                <path d="M8 10c.7-1 2-1 4-1s3.3 0 4 1" stroke="#334155" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="9" cy="8" r=".6" fill="#334155" />
+                <circle cx="15" cy="8" r=".6" fill="#334155" />
+              </svg>
+            </div>
+
+            <h1 className="mt-6 text-3xl md:text-4xl font-extrabold">Vlad Meme Token</h1>
+            <p className="mt-2 text-slate-500 max-w-xl">Fair Launched on Pump.fun • 100% Community Owned. Vlad Meme Token launched fair on pump.fun with zero team allocation. Built by the community, for the community.</p>
+
+            <div className="mt-6 flex flex-col sm:flex-row gap-3 items-center justify-center md:justify-start">
+              <button className="px-5 py-3 rounded-md bg-emerald-500 text-white font-medium">Buy VLAD on pump.fun</button>
+              <button className="px-5 py-3 rounded-md bg-white border font-medium">View Chart</button>
+            </div>
+          </div>
+
+          <div className="flex-1">
+            <div className="bg-white rounded-xl p-6 shadow-md">
+              <h3 className="font-semibold">Why Choose VLAD?</h3>
+              <p className="text-sm text-slate-500 mt-2">Vlad Meme Token is 100% community-owned, fair launched on pump.fun with zero team allocation.</p>
+
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  { title: "Fair Launch", desc: "Launched on pump.fun with zero team allocation" },
+                  { title: "100% Community", desc: "No token sale, no team allocation" },
+                  { title: "Pump.fun Verified", desc: "Launched through pump.fun secure flow" },
+                  { title: "Wavy Energy", desc: "Bringing good vibes and energy" },
+                ].map((c) => (
+                  <div key={c.title} className="p-4 bg-white rounded-lg shadow-sm">
+                    <div className="text-sm font-semibold">{c.title}</div>
+                    <div className="text-xs text-slate-400 mt-2">{c.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 bg-white rounded-xl p-6 shadow-md">
+              <h4 className="font-semibold">Trusted Partners</h4>
+              <div className="mt-4 flex gap-3 flex-wrap">
+                {['pump.fun','Solana','Phantom Wallet','Solflare','Jupiter DEX','Bitdeye'].map(p => (
+                  <span key={p} className="px-3 py-2 bg-slate-50 border rounded-full text-xs">{p}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 bg-white rounded-xl p-6 shadow-md">
+              <h4 className="font-semibold">Community Team</h4>
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {[
+                  {name:'VladAnon', role:'Community Founder'},
+                  {name:'VladBuilder', role:'Community Marketing'},
+                  {name:'VladDev', role:'Community Developer'},
+                ].map(t => (
+                  <div key={t.name} className="p-4 bg-slate-50 rounded-lg text-center">
+                    <div className="w-16 h-16 mx-auto rounded-lg bg-white flex items-center justify-center">??</div>
+                    <div className="mt-3 font-semibold">{t.name}</div>
+                    <div className="text-xs text-slate-400">{t.role}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 rounded-xl p-6 shadow-md bg-gradient-to-r from-teal-600 to-sky-600 text-white">
+              <h3 className="text-xl font-semibold">Ready to Join the Vlad Revolution?</h3>
+              <p className="text-sm mt-2">Join the 100% community-owned movement. Fair launched, no team tokens, pure community power!</p>
+              <div className="mt-4 flex gap-3">
+                <button className="px-4 py-2 bg-white text-teal-700 rounded-md font-semibold">Buy WST Now</button>
+                <button className="px-4 py-2 border rounded-md text-white">Join Community</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function Buy(){
+  return (
+    <div className="space-y-6">
+      <h2 className="text-2xl font-bold">Buy Wavy Smile Token</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="p-6 bg-white rounded-lg shadow">
+          <h3 className="font-semibold">Buy on pump.fun (Original Launch)</h3>
+          <p className="text-sm text-slate-400 mt-2">Trade on the original launch platform.</p>
+          <div className="mt-4 flex gap-3 flex-col">
+            <button className="px-4 py-2 rounded-md bg-emerald-500 text-white">Buy on pump.fun</button>
+            <button className="px-4 py-2 rounded-md bg-violet-500 text-white">Buy on Jupiter</button>
+          </div>
+        </div>
+
+        <div className="p-6 bg-white rounded-lg shadow">
+          <h3 className="font-semibold">Coming Soon</h3>
+          <p className="text-sm text-slate-400 mt-2">More platforms coming as we grow</p>
+          <div className="mt-4 space-y-2">
+            <button className="w-full px-4 py-2 rounded-md bg-slate-50 border">Raydium (Coming Soon)</button>
+            <button className="w-full px-4 py-2 rounded-md bg-slate-50 border">Meteora (Coming Soon)</button>
+          </div>
+        </div>
+
+        <div className="p-6 bg-white rounded-lg shadow flex flex-col items-start justify-center">
+          <h3 className="font-semibold">Contract Address</h3>
+          <div className="mt-4 text-2xl font-bold text-slate-400">SOON</div>
+          <div className="text-sm text-slate-400 mt-2">Contract will be available soon</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Tokenomics(){
+  // Simple SVG donut to mimic tokenomics circle
+  const total = 1000000000; // 1B supply
+  return (
+    <div className="space-y-6">
+      <h2 className="text-2xl font-bold">Tokenomics</h2>
+      <div className="p-6 bg-white rounded-lg shadow flex gap-8 items-center">
+        <div className="w-48 h-48 flex items-center justify-center">
+          <svg viewBox="0 0 36 36" className="w-40 h-40">
+            <path d="M18 2a16 16 0 1 0 0 32 16 16 0 1 0 0-32" fill="none" stroke="#E9D5FF" strokeWidth="8" />
+            <circle cx="18" cy="18" r="6" fill="#fff" stroke="#CBD5E1" />
+            <text x="18" y="19" fontSize="4" textAnchor="middle" fill="#0f172a">1B</text>
+            <text x="18" y="25" fontSize="1.5" textAnchor="middle" fill="#64748b">Total Supply</text>
+          </svg>
+        </div>
+
+        <div className="flex-1">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="font-semibold">Community Launch</h3>
+              <p className="text-sm text-slate-400">Fair launch on pump.fun — 100% community</p>
+            </div>
+            <div className="text-sm text-green-600 font-semibold">100%</div>
+          </div>
+
+          <div className="mt-6 bg-slate-50 p-4 rounded">
+            <h4 className="font-semibold">Fair Launch Features:</h4>
+            <ul className="mt-3 list-disc ml-5 text-sm text-slate-500 space-y-1">
+              <li>100% Fair launch on pump.fun</li>
+              <li>Zero team allocation</li>
+              <li>No presale, no private investors</li>
+              <li>Community-driven from day one</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Roadmap(){
+  return (
+    <div className="space-y-6">
+      <h2 className="text-2xl font-bold">Roadmap</h2>
+      <div className="p-6 bg-white rounded-lg shadow">
+        <ol className="space-y-6">
+          <li>
+            <div className="flex items-start gap-4">
+              <div className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center">1</div>
+              <div>
+                <div className="font-semibold">Community Launch</div>
+                <div className="text-sm text-slate-500">Fair launch on pump.fun, token listing on initial DEX</div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className="flex items-start gap-4">
+              <div className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center">2</div>
+              <div>
+                <div className="font-semibold">Liquidity Growth</div>
+                <div className="text-sm text-slate-500">Grow liquidity and partnerships</div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className="flex items-start gap-4">
+              <div className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center">3</div>
+              <div>
+                <div className="font-semibold">Community Expansion</div>
+                <div className="text-sm text-slate-500">More listings, community tools and ecosystem</div>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  );
+}
